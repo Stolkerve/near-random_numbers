@@ -14,7 +14,7 @@ pub struct Rng {
     state: (u64, u64)
 }
 
-pub trait Rand {
+pub trait Rng {
     fn from_seed(seed: u64) -> Self;
     fn rand_u32(&mut self) -> u32;
 
@@ -124,7 +124,7 @@ pub trait Rand {
     }
 }
 
-pub fn rand_iter<'a, T: 'static, Generator: Rand>(
+pub fn rand_iter<'a, T: 'static, Generator: Rng>(
     rng: &'a mut Generator,
     rand: fn(&mut Generator) -> T
 ) -> impl 'a + Iterator<Item = T>
@@ -188,7 +188,7 @@ impl Random {
         let mut v: Vec<u64> = vec!();
         let mut rng = Rng::new(env::random_seed());
         for i in 0 .. 50 {
-            v.push(rng.rand_u64());
+            v.push(rng.());
         }
         return v;
     }
