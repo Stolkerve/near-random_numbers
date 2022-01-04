@@ -1,0 +1,14 @@
+{
+  "name": "xd",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "cargo build --target wasm32-unknown-unknown --release && cp target/wasm32-unknown-unknown/release/status_message.wasm ./res/",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "near-api-js": "^0.44.2",
+    "near-runner": "^1.0.0"
+  },
+  "devDependencies": {}
+}
